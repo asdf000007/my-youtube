@@ -2,19 +2,86 @@
 <html lang="zh-Hant">
 <head>
   <meta charset="UTF-8" />
-  <title>YouTube 測試</title>
+  <title>四個 YouTube 影片同時觀看</title>
+  <style>
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      background: #111;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+    header {
+      padding: 8px;
+      text-align: center;
+      background: #222;
+    }
+    .grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: repeat(2, 1fr);
+      gap: 4px;
+      padding: 4px;
+    }
+    .video-wrapper {
+      position: relative;
+      width: 100%;
+      height: 100%;
+      background: #000;
+    }
+    .video-wrapper iframe {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+  </style>
 </head>
 <body>
-  <h2>測試嵌入影片 gk42teksGms</h2>
 
-  <iframe
-    width="560"
-    height="315"
-    src="https://www.youtube.com/embed/gk42teksGms"
-    title="YouTube video player"
-    frameborder="0"
-    allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-    allowfullscreen>
-  </iframe>
+<header>四個 YouTube 影片同時觀看</header>
+
+<div class="grid">
+
+  <!-- 第 1 個影片：使用你提供的官方 iframe -->
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/T1K3-d5X23I?si=V2RjPe_X8BUWQsx1"
+      title="YouTube video player"
+      frameborder="0"
+      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+      referrerpolicy="strict-origin-when-cross-origin"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- 第 2 個影片（請用第二支影片的 iframe 替換） -->
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/mByxbxTbsDI"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- 第 3 個影片 -->
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/IknBpatBl18"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+  <!-- 第 4 個影片 -->
+  <div class="video-wrapper">
+    <iframe
+      src="https://www.youtube.com/embed/D455sIMb2vg"
+      allowfullscreen>
+    </iframe>
+  </div>
+
+</div>
+
 </body>
 </html>
