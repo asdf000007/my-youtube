@@ -19,23 +19,60 @@
       display: grid;
       grid-template-columns: repeat(2, 1fr);
       grid-template-rows: repeat(2, 1fr);
-      gap: 4px;
-      padding: 4px;
+      gap: 8px;
+      padding: 8px;
     }
 
+    /* 每個影片通用樣式 */
     .video-block {
       display: flex;
       flex-direction: column;
       width: 100%;
       height: 100%;
+      border: 4px solid;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    /* 四種顏色（外框 + 標題背景一致） */
+    .color-red {
+      border-color: #ff4d4d;
+    }
+    .color-red .video-title {
+      background: #ff4d4d;
+      color: #fff;
+    }
+
+    .color-blue {
+      border-color: #4da6ff;
+    }
+    .color-blue .video-title {
+      background: #4da6ff;
+      color: #fff;
+    }
+
+    .color-green {
+      border-color: #5cd65c;
+    }
+    .color-green .video-title {
+      background: #5cd65c;
+      color: #fff;
+    }
+
+    .color-yellow {
+      border-color: #ffd633;
+    }
+    .color-yellow .video-title {
+      background: #ffd633;
+      color: #000; /* 黃色背景配黑字比較清楚 */
     }
 
     .video-title {
       text-align: center;
       padding: 6px 0;
-      background: #222;
-      font-size: 14px;
-      border-bottom: 1px solid #333;
+      font-size: 15px;
+      font-weight: bold;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
     }
 
     .video-wrapper {
@@ -47,6 +84,7 @@
 
     .video-wrapper iframe {
       position: absolute;
+      inset: 0;
       width: 100%;
       height: 100%;
       border: none;
@@ -57,47 +95,35 @@
 
 <div class="grid">
 
-  <!-- 第 1 個影片 -->
-  <div class="video-block">
-    <div class="video-title">影片 1 標題</div>
+  <!-- 第 1 格：紅 -->
+  <div class="video-block color-red">
+    <div class="video-title">影片 1</div>
     <div class="video-wrapper">
-      <iframe
-        src="https://www.youtube.com/embed/T1K3-d5X23I"
-        allowfullscreen>
-      </iframe>
+      <iframe src="https://www.youtube.com/embed/T1K3-d5X23I" allowfullscreen></iframe>
     </div>
   </div>
 
-  <!-- 第 2 個影片 -->
-  <div class="video-block">
-    <div class="video-title">影片 2 標題</div>
+  <!-- 第 2 格：藍 -->
+  <div class="video-block color-blue">
+    <div class="video-title">影片 2</div>
     <div class="video-wrapper">
-      <iframe
-        src="https://www.youtube.com/embed/mByxbxTbsDI"
-        allowfullscreen>
-      </iframe>
+      <iframe src="https://www.youtube.com/embed/mByxbxTbsDI" allowfullscreen></iframe>
     </div>
   </div>
 
-  <!-- 第 3 個影片 -->
-  <div class="video-block">
-    <div class="video-title">影片 3 標題</div>
+  <!-- 第 3 格：綠 -->
+  <div class="video-block color-green">
+    <div class="video-title">影片 3</div>
     <div class="video-wrapper">
-      <iframe
-        src="https://www.youtube.com/embed/IknBpatBl18"
-        allowfullscreen>
-      </iframe>
+      <iframe src="https://www.youtube.com/embed/IknBpatBl18" allowfullscreen></iframe>
     </div>
   </div>
 
-  <!-- 第 4 個影片 -->
-  <div class="video-block">
-    <div class="video-title">影片 4 標題</div>
+  <!-- 第 4 格：黃 -->
+  <div class="video-block color-yellow">
+    <div class="video-title">影片 4</div>
     <div class="video-wrapper">
-      <iframe
-        src="https://www.youtube.com/embed/D455sIMb2vg"
-        allowfullscreen>
-      </iframe>
+      <iframe src="https://www.youtube.com/embed/D455sIMb2vg" allowfullscreen></iframe>
     </div>
   </div>
 
