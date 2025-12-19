@@ -104,6 +104,13 @@
   .span-2 {
     grid-column: span 2;
   }
+  
+  /* 下方合併格：完全無框 */
+	.no-frame {
+	  border: none;
+	  border-radius: 0;
+	}
+
 </style>
 
 </head>
@@ -133,15 +140,14 @@
     </div>
   </div>
 
-  <div class="video-block color-green span-2">
-    <div class="video-title">空拍畫面</div>
+  <div class="video-block span-2 no-frame">
     <div class="video-wrapper">
-      <img src="drone.png" alt="Drone View">
-    </div>
+	 <img src="drone.png" alt="Drone View">
+	</div>
   </div>
-
 </div>
 
 </body>
 </html>
+
 
