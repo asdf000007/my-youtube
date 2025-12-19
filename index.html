@@ -4,7 +4,12 @@
   <meta charset="UTF-8" />
   <title>夢時代跨年</title>
   <style>
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
     body {
       background: #111;
       color: #fff;
@@ -18,12 +23,12 @@
       flex: 1;
       display: grid;
       grid-template-columns: repeat(2, 1fr);
-      grid-template-rows: repeat(2, 1fr);
+      grid-template-rows: 1fr 1fr;
       gap: 8px;
       padding: 8px;
     }
 
-    /* 每個影片通用樣式 */
+    /* 每個區塊通用樣式 */
     .video-block {
       display: flex;
       flex-direction: column;
@@ -34,7 +39,7 @@
       overflow: hidden;
     }
 
-    /* 四種顏色（外框 + 標題背景一致） */
+    /* 顏色樣式 */
     .color-red {
       border-color: #ff4d4d;
     }
@@ -59,14 +64,6 @@
       color: #fff;
     }
 
-    .color-yellow {
-      border-color: #ffd633;
-    }
-    .color-yellow .video-title {
-      background: #ffd633;
-      color: #000; /* 黃色背景配黑字比較清楚 */
-    }
-
     .video-title {
       text-align: center;
       padding: 6px 0;
@@ -82,12 +79,19 @@
       background: #000;
     }
 
-    .video-wrapper iframe {
+    .video-wrapper iframe,
+    .video-wrapper img {
       position: absolute;
       inset: 0;
       width: 100%;
       height: 100%;
       border: none;
+      object-fit: cover;
+    }
+
+    /* 合併 3、4 格 */
+    .span-2 {
+      grid-column: span 2;
     }
   </style>
 </head>
@@ -95,25 +99,36 @@
 
 <div class="grid">
 
-  <!-- 第 1 格：紅 -->
+  <!-- 第 1 格 -->
   <div class="video-block color-red">
     <div class="video-title">中華、時代路口</div>
     <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/T1K3-d5X23I" allowfullscreen></iframe>
+      <iframe
+        src="https://www.youtube.com/embed/T1K3-d5X23I"
+        allowfullscreen>
+      </iframe>
     </div>
   </div>
 
-  <!-- 第 2 格：藍 -->
+  <!-- 第 2 格 -->
   <div class="video-block color-blue">
     <div class="video-title">中山、凱旋路口</div>
     <div class="video-wrapper">
-      <iframe src="https://www.youtube.com/embed/mByxbxTbsDI" allowfullscreen></iframe>
+      <iframe
+        src="https://www.youtube.com/embed/mByxbxTbsDI"
+        allowfullscreen>
+      </iframe>
     </div>
   </div>
 
+  <div class="video-block color-green span-2">
+    <div class="video-title">空拍畫面</div>
+    <div class="video-wrapper">
+      <img src="drone.png" alt="Drone View">
+    </div>
+  </div>
 
 </div>
 
 </body>
 </html>
-
