@@ -111,6 +111,24 @@
 	  border-radius: 0;
 	}
 
+	.toggle-btn {
+	  position: absolute;
+	  top: 8px;
+	  right: 8px;
+	  z-index: 10;
+	  padding: 6px 10px;
+	  font-size: 13px;
+	  background: rgba(0,0,0,0.7);
+	  color: #fff;
+	  border: 1px solid #fff;
+	  border-radius: 4px;
+	  cursor: pointer;
+	}
+
+	.hidden {
+	  display: none;
+	}
+
 </style>
 
 </head>
@@ -131,18 +149,29 @@
     </div>
   </div>
 
-  <!-- 第 2 格 -->
-  <div class="video-block color-blue">
-    <div class="video-title">中山、凱旋路口</div>
-    <div class="video-wrapper">
-	<iframe
-	  src="https://www.youtube.com/embed/uHBndPYVIYU"
-	  allow="autoplay; encrypted-media; picture-in-picture"
-	  allowfullscreen>
-	</iframe>
+	<!-- 第 2 格 -->
+	<div class="video-block color-blue">
+	  <div class="video-title">中山、凱旋路口</div>
+	  <div class="video-wrapper">
 
-    </div>
-  </div>
+		<button class="toggle-btn" onclick="toggleView()">切換畫面</button>
+
+		<iframe
+		  id="yt2"
+		  src="https://www.youtube.com/embed/uHBndPYVIYU"
+		  allow="autoplay; encrypted-media; picture-in-picture"
+		  allowfullscreen>
+		</iframe>
+
+		<img
+		  id="img2"
+		  src="no.png"
+		  alt="Drone View"
+		  class="hidden">
+		  
+	  </div>
+	</div>
+
 
   <div class="video-block span-2 no-frame">
     <div class="video-wrapper">
@@ -151,9 +180,32 @@
   </div>
 </div>
 
+	<script>
+	  let showingVideo = true;
+
+	  function toggleView() {
+		const iframe = document.getElementById('yt2');
+		const img = document.getElementById('img2');
+
+		if (showingVideo) {
+		  // 隱藏影片，顯示圖片
+		  iframe.classList.add('hidden');
+		  img.classList.remove('hidden');
+
+		  // 停止 YouTube 播放（重置 src）
+		  iframe.src = iframe.src;
+		} else {
+		  // 顯示影片，隱藏圖片
+		  img.classList.add('hidden');
+		  iframe.classList.remove('hidden');
+		}
+
+		showingVideo = !showingVideo;
+	  }
+	</script>
+
 </body>
 </html>
-
 
 
 
