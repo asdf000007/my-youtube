@@ -3,135 +3,138 @@
 <head>
   <meta charset="UTF-8" />
   <title>夢時代跨年</title>
-<style>
-  * {
-    box-sizing: border-box;
-    margin: 0;
-    padding: 0;
-  }
 
-  body {
-    background: #111;
-    color: #fff;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    font-family: Arial, sans-serif;
-  }
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
 
-  .grid {
-    flex: 1;
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    grid-template-rows: 1fr 1fr;
-    gap: 8px;
-    padding: 8px;
-  }
+    body {
+      background: #111;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+    }
 
-  /* 每個區塊通用樣式 */
-  .video-block {
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    height: 100%;
-    border: 4px solid;
-    border-radius: 6px;
-    overflow: hidden;
-  }
+    .grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr 1fr;
+      gap: 8px;
+      padding: 8px;
+    }
 
-  /* 顏色樣式 */
-  .color-red {
-    border-color: #ff4d4d;
-  }
-  .color-red .video-title {
-    background: #ff4d4d;
-    color: #fff;
-  }
+    /* 每個區塊通用樣式 */
+    .video-block {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      border: 4px solid;
+      border-radius: 6px;
+      overflow: hidden;
+    }
 
-  .color-blue {
-    border-color: #4da6ff;
-  }
-  .color-blue .video-title {
-    background: #4da6ff;
-    color: #fff;
-  }
+    /* 顏色樣式 */
+    .color-red {
+      border-color: #ff4d4d;
+    }
+    .color-red .video-title {
+      background: #ff4d4d;
+      color: #fff;
+    }
 
-  .color-green {
-    border-color: #5cd65c;
-  }
-  .color-green .video-title {
-    background: #5cd65c;
-    color: #fff;
-  }
+    .color-blue {
+      border-color: #4da6ff;
+    }
+    .color-blue .video-title {
+      background: #4da6ff;
+      color: #fff;
+    }
 
-  .video-title {
-    text-align: center;
-    padding: 6px 0;
-    font-size: 15px;
-    font-weight: bold;
-    border-bottom: 1px solid rgba(0,0,0,0.2);
-  }
+    .color-green {
+      border-color: #5cd65c;
+    }
+    .color-green .video-title {
+      background: #5cd65c;
+      color: #fff;
+    }
 
-  .video-wrapper {
-    position: relative;
-    flex: 1;
-    width: 100%;
-    background: #000;
-  }
+    /* 標題列 */
+    .video-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 6px 0;
+      font-size: 15px;
+      font-weight: bold;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+    }
 
-  /* YouTube 影片：填滿格子 */
-  .video-wrapper iframe {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-  }
+    /* 標題列右側切換按鈕 */
+    .title-toggle-btn {
+      position: absolute;
+      right: 8px;
+      padding: 2px 6px;
+      font-size: 11px;
+      line-height: 1.4;
+      background: rgba(0,0,0,0.35);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 3px;
+      cursor: pointer;
+    }
 
-  /* 圖片：完整顯示，不裁切 */
-  .video-wrapper img {
-    position: absolute;
-    inset: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    object-fit: contain;   /* 關鍵 */
-    object-position: center;
-    background: #000;
-  }
+    .video-wrapper {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      background: #000;
+    }
 
-  /* 合併 3、4 格 */
-  .span-2 {
-    grid-column: span 2;
-  }
-  
-  /* 下方合併格：完全無框 */
-	.no-frame {
-	  border: none;
-	  border-radius: 0;
-	}
+    /* YouTube 影片：填滿格子 */
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
 
-	.toggle-btn {
-	  position: absolute;
-	  top: 8px;
-	  right: 8px;
-	  z-index: 10;
-	  padding: 6px 10px;
-	  font-size: 13px;
-	  background: rgba(0,0,0,0.7);
-	  color: #fff;
-	  border: 1px solid #fff;
-	  border-radius: 4px;
-	  cursor: pointer;
-	}
+    /* 圖片：完整顯示，不裁切 */
+    .video-wrapper img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      background: #000;
+    }
 
-	.hidden {
-	  display: none;
-	}
+    .hidden {
+      display: none;
+    }
 
-</style>
+    /* 合併 3、4 格 */
+    .span-2 {
+      grid-column: span 2;
+    }
 
+    /* 下方合併格：完全無框 */
+    .no-frame {
+      border: none;
+      border-radius: 0;
+    }
+  </style>
 </head>
+
 <body>
 
 <div class="grid">
@@ -140,79 +143,65 @@
   <div class="video-block color-red">
     <div class="video-title">中華、時代路口</div>
     <div class="video-wrapper">
-	<iframe
-	  src="https://www.youtube.com/embed/oLV6XhgdFEM"
-	  allow="autoplay; encrypted-media; picture-in-picture"
-	  allowfullscreen>
-	</iframe>
-
+      <iframe
+        src="https://www.youtube.com/embed/oLV6XhgdFEM"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen>
+      </iframe>
     </div>
   </div>
 
-	<!-- 第 2 格 -->
-	<div class="video-block color-blue">
-	  <div class="video-title">中山、凱旋路口</div>
-	  <div class="video-wrapper">
+  <!-- 第 2 格（可切換） -->
+  <div class="video-block color-blue">
+    <div class="video-title">
+      中山、凱旋路口
+      <button class="title-toggle-btn" onclick="toggleView()">切換</button>
+    </div>
 
-		<button class="toggle-btn" onclick="toggleView()">切換畫面</button>
+    <div class="video-wrapper">
+      <iframe
+        id="yt2"
+        src="https://www.youtube.com/embed/uHBndPYVIYU"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen>
+      </iframe>
 
-		<iframe
-		  id="yt2"
-		  src="https://www.youtube.com/embed/uHBndPYVIYU"
-		  allow="autoplay; encrypted-media; picture-in-picture"
-		  allowfullscreen>
-		</iframe>
+      <img
+        id="img2"
+        src="no.png"
+        alt="Drone View"
+        class="hidden">
+    </div>
+  </div>
 
-		<img
-		  id="img2"
-		  src="no.png"
-		  alt="Drone View"
-		  class="hidden">
-		  
-	  </div>
-	</div>
-
-
+  <!-- 下方合併格 -->
   <div class="video-block span-2 no-frame">
     <div class="video-wrapper">
-	 <img src="drone.png" alt="Drone View">
-	</div>
+      <img src="drone.png" alt="Drone View">
+    </div>
   </div>
+
 </div>
 
-	<script>
-	  let showingVideo = true;
+<script>
+  let showingVideo = true;
 
-	  function toggleView() {
-		const iframe = document.getElementById('yt2');
-		const img = document.getElementById('img2');
+  function toggleView() {
+    const iframe = document.getElementById('yt2');
+    const img = document.getElementById('img2');
 
-		if (showingVideo) {
-		  // 隱藏影片，顯示圖片
-		  iframe.classList.add('hidden');
-		  img.classList.remove('hidden');
+    if (showingVideo) {
+      iframe.classList.add('hidden');
+      img.classList.remove('hidden');
+      iframe.src = iframe.src; // 停止 YouTube 播放
+    } else {
+      img.classList.add('hidden');
+      iframe.classList.remove('hidden');
+    }
 
-		  // 停止 YouTube 播放（重置 src）
-		  iframe.src = iframe.src;
-		} else {
-		  // 顯示影片，隱藏圖片
-		  img.classList.add('hidden');
-		  iframe.classList.remove('hidden');
-		}
-
-		showingVideo = !showingVideo;
-	  }
-	</script>
+    showingVideo = !showingVideo;
+  }
+</script>
 
 </body>
 </html>
-
-
-
-
-
-
-
-
-
-
