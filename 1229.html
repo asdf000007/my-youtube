@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+  <meta charset="UTF-8" />
+  <title>夢時代跨年</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      background: #111;
+      color: #fff;
+      height: 100vh;
+      display: flex;
+      flex-direction: column;
+      font-family: Arial, sans-serif;
+    }
+
+    .grid {
+      flex: 1;
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      grid-template-rows: 1fr 1fr;
+      gap: 8px;
+      padding: 8px;
+    }
+
+    /* 每個區塊通用樣式 */
+    .video-block {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+      height: 100%;
+      border: 4px solid;
+      border-radius: 6px;
+      overflow: hidden;
+    }
+
+    /* 顏色樣式 */
+    .color-red {
+      border-color: #ff4d4d;
+    }
+    .color-red .video-title {
+      background: #ff4d4d;
+      color: #fff;
+    }
+
+    .color-blue {
+      border-color: #4da6ff;
+    }
+    .color-blue .video-title {
+      background: #4da6ff;
+      color: #fff;
+    }
+
+    .color-green {
+      border-color: #5cd65c;
+    }
+
+    /* 標題列 */
+    .video-title {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      position: relative;
+      padding: 6px 0;
+      font-size: 15px;
+      font-weight: bold;
+      border-bottom: 1px solid rgba(0,0,0,0.2);
+    }
+
+    /* 標題列右側切換按鈕 */
+    .title-toggle-btn {
+      position: absolute;
+      right: 8px;
+      padding: 2px 6px;
+      font-size: 11px;
+      line-height: 1.4;
+      background: rgba(0,0,0,0.35);
+      color: #fff;
+      border: 1px solid rgba(255,255,255,0.6);
+      border-radius: 3px;
+      cursor: pointer;
+    }
+
+    .video-wrapper {
+      position: relative;
+      flex: 1;
+      width: 100%;
+      background: #000;
+    }
+
+    /* YouTube 影片：填滿格子 */
+    .video-wrapper iframe {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      border: none;
+    }
+
+    /* 圖片：完整顯示，不裁切 */
+    .video-wrapper img {
+      position: absolute;
+      inset: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: contain;
+      object-position: center;
+      background: #000;
+    }
+
+    .hidden {
+      display: none;
+    }
+
+    /* 下方合併 3+4 格 */
+    .span-2 {
+      grid-column: span 2;
+    }
+  </style>
+</head>
+
+<body>
+
+<div class="grid">
+
+  <!-- 第 1 格 -->
+  <div class="video-block color-red">
+    <div class="video-title">捷運凱旋站</div>
+    <div class="video-wrapper">
+      <iframe
+        src="https://www.youtube.com/embed/yd1JG5XjjwY"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+    </div>
+  </div>
+
+  <!-- 第 2 格（可切換） -->
+  <div class="video-block color-blue">
+    <div class="video-title">
+      夢時代購物中心
+      <button class="title-toggle-btn" onclick="toggleView()">切換</button>
+    </div>
+
+    <div class="video-wrapper">
+      <iframe
+        id="yt2"
+        src="https://www.youtube.com/embed/uf2xWshAaR8"
+        allow="autoplay; encrypted-media; picture-in-picture"
+        allowfullscreen>
+      </iframe>
+
+      <img
+        id="img2"
+        src="no.png"
+        alt="Drone View"
+        class="hidden">
+    </div>
+  </div>
+
+  <!-- 第 3 格（合併 3 + 4，綠色外框，無標題） -->
+  <div class="video-block color-green span-2">
+    <div class="video-wrapper">
+      <img src="drone.png" alt="Drone View">
+    </div>
+  </div>
+
+</div>
+
+<script>
+  let showingVideo = true;
+
+  function toggleView() {
+    const iframe = document.getElementById('yt2');
+    const img = document.getElementById('img2');
+
+    if (showingVideo) {
+      iframe.classList.add('hidden');
+      img.classList.remove('hidden');
+      iframe.src = iframe.src; // 停止 YouTube 播放
+    } else {
+      img.classList.add('hidden');
+      iframe.classList.remove('hidden');
+    }
+
+    showingVideo = !showingVideo;
+  }
+</script>
+
+</body>
+</html>
