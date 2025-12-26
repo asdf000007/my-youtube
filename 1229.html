@@ -131,13 +131,24 @@
 
   <!-- 第 1 格 -->
   <div class="video-block color-red">
-    <div class="video-title">捷運凱旋站</div>
+    <div class="video-title">
+      捷運凱旋站
+      <button class="title-toggle-btn" onclick="toggleView()">切換</button>
+    </div>
+
     <div class="video-wrapper">
       <iframe
-        src="https://www.youtube.com/embed/yd1JG5XjjwY"
+        id="yt2"
+        src="https://www.youtube.com/embed/SB6p5c9_yNo"
         allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen>
       </iframe>
+
+      <img
+        id="img2"
+        src="no.png"
+        alt="Drone View"
+        class="hidden">
     </div>
   </div>
 
@@ -151,7 +162,7 @@
     <div class="video-wrapper">
       <iframe
         id="yt2"
-        src="https://www.youtube.com/embed/uf2xWshAaR8"
+        src="https://www.youtube.com/embed/8rTI6TvwCLI"
         allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen>
       </iframe>
@@ -164,11 +175,11 @@
     </div>
   </div>
 
-  <!-- 第 3 格（合併 3 + 4，綠色外框，無標題） -->
+  <!-- 第 3 格（無人機，無標題） -->
   <div class="video-block color-green span-2">
 	<div class="video-wrapper">
       <iframe
-        src="https://www.youtube.com/embed/yd1JG5XjjwY"
+        src="https://www.youtube.com/embed/iMvlhops2EE"
         allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen>
       </iframe>
