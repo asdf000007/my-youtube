@@ -42,6 +42,7 @@
     .color-blue .video-title { background: #4da6ff; color: #fff; }
 
     .color-green { border-color: #5cd65c; }
+    .color-green .video-title { background: #5cd65c; color: #fff; }
 
     .video-title {
       display: flex;
@@ -147,14 +148,26 @@
     </div>
   </div>
 
-  <!-- 第 3 格（合併 3+4，無人機，無標題） -->
+  <!-- 第 3 格（合併 3+4，無人機，可切換） -->
   <div class="video-block color-green span-2">
+    <div class="video-title">
+      無人機
+      <button class="title-toggle-btn" onclick="toggleView(3)">切換</button>
+    </div>
+
     <div class="video-wrapper">
       <iframe
+        id="yt3"
         src="https://www.youtube.com/embed/tohs9PCH0xA"
         allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen>
       </iframe>
+
+      <img
+        id="img3"
+        src="drone.png"
+        alt="Drone View"
+        class="hidden">
     </div>
   </div>
 
@@ -162,7 +175,7 @@
 
 <script>
   // 各格子各自記錄目前狀態（避免按 A 影響 B）
-  const showingVideo = { 1: true, 2: true };
+  const showingVideo = { 1: true, 2: true, 3: true };
 
   function toggleView(n) {
     const iframe = document.getElementById(`yt${n}`);
