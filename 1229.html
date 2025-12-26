@@ -5,11 +5,7 @@
   <title>夢時代跨年</title>
 
   <style>
-    * {
-      box-sizing: border-box;
-      margin: 0;
-      padding: 0;
-    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
 
     body {
       background: #111;
@@ -29,7 +25,6 @@
       padding: 8px;
     }
 
-    /* 每個區塊通用樣式 */
     .video-block {
       display: flex;
       flex-direction: column;
@@ -40,28 +35,14 @@
       overflow: hidden;
     }
 
-    /* 顏色樣式 */
-    .color-red {
-      border-color: #ff4d4d;
-    }
-    .color-red .video-title {
-      background: #ff4d4d;
-      color: #fff;
-    }
+    .color-red { border-color: #ff4d4d; }
+    .color-red .video-title { background: #ff4d4d; color: #fff; }
 
-    .color-blue {
-      border-color: #4da6ff;
-    }
-    .color-blue .video-title {
-      background: #4da6ff;
-      color: #fff;
-    }
+    .color-blue { border-color: #4da6ff; }
+    .color-blue .video-title { background: #4da6ff; color: #fff; }
 
-    .color-green {
-      border-color: #5cd65c;
-    }
+    .color-green { border-color: #5cd65c; }
 
-    /* 標題列 */
     .video-title {
       display: flex;
       align-items: center;
@@ -73,7 +54,6 @@
       border-bottom: 1px solid rgba(0,0,0,0.2);
     }
 
-    /* 標題列右側切換按鈕 */
     .title-toggle-btn {
       position: absolute;
       right: 8px;
@@ -94,7 +74,6 @@
       background: #000;
     }
 
-    /* YouTube 影片：填滿格子 */
     .video-wrapper iframe {
       position: absolute;
       inset: 0;
@@ -103,7 +82,6 @@
       border: none;
     }
 
-    /* 圖片：完整顯示，不裁切 */
     .video-wrapper img {
       position: absolute;
       inset: 0;
@@ -114,49 +92,43 @@
       background: #000;
     }
 
-    .hidden {
-      display: none;
-    }
+    .hidden { display: none; }
 
-    /* 下方合併 3+4 格 */
-    .span-2 {
-      grid-column: span 2;
-    }
+    .span-2 { grid-column: span 2; }
   </style>
 </head>
 
 <body>
-
 <div class="grid">
 
   <!-- 第 1 格 -->
   <div class="video-block color-red">
     <div class="video-title">
       捷運凱旋站
-      <button class="title-toggle-btn" onclick="toggleView()">切換</button>
+      <button class="title-toggle-btn" onclick="toggleView(1)">切換</button>
     </div>
 
     <div class="video-wrapper">
       <iframe
-        id="yt2"
+        id="yt1"
         src="https://www.youtube.com/embed/SB6p5c9_yNo"
         allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen>
       </iframe>
 
       <img
-        id="img2"
+        id="img1"
         src="no.png"
         alt="Drone View"
         class="hidden">
     </div>
   </div>
 
-  <!-- 第 2 格（可切換） -->
+  <!-- 第 2 格 -->
   <div class="video-block color-blue">
     <div class="video-title">
       夢時代購物中心
-      <button class="title-toggle-btn" onclick="toggleView()">切換</button>
+      <button class="title-toggle-btn" onclick="toggleView(2)">切換</button>
     </div>
 
     <div class="video-wrapper">
@@ -175,30 +147,30 @@
     </div>
   </div>
 
-  <!-- 第 3 格（無人機，無標題） -->
+  <!-- 第 3 格（合併 3+4，無人機，無標題） -->
   <div class="video-block color-green span-2">
-	<div class="video-wrapper">
+    <div class="video-wrapper">
       <iframe
         src="https://www.youtube.com/embed/tohs9PCH0xA"
         allow="autoplay; encrypted-media; picture-in-picture"
         allowfullscreen>
       </iframe>
-    </div>  
-	  
-	  
     </div>
   </div>
 
 </div>
 
 <script>
-  let showingVideo = true;
+  // 各格子各自記錄目前狀態（避免按 A 影響 B）
+  const showingVideo = { 1: true, 2: true };
 
-  function toggleView() {
-    const iframe = document.getElementById('yt2');
-    const img = document.getElementById('img2');
+  function toggleView(n) {
+    const iframe = document.getElementById(`yt${n}`);
+    const img = document.getElementById(`img${n}`);
 
-    if (showingVideo) {
+    if (!iframe || !img) return;
+
+    if (showingVideo[n]) {
       iframe.classList.add('hidden');
       img.classList.remove('hidden');
       iframe.src = iframe.src; // 停止 YouTube 播放
@@ -207,10 +179,9 @@
       iframe.classList.remove('hidden');
     }
 
-    showingVideo = !showingVideo;
+    showingVideo[n] = !showingVideo[n];
   }
 </script>
 
 </body>
 </html>
-
